@@ -1,16 +1,46 @@
+import { Link } from "react-router-dom";
+import { FiMail, FiPhone, FiInstagram } from "react-icons/fi";
+
 export default function Footer() {
   return (
     <footer className="footer">
-      <div style={{maxWidth: 1100, margin: '0 auto', display: 'flex', gap: 24, justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap'}}>
-        <div>
+      <div className="footer-grid">
+        <div className="footer-brand">
           <strong>Shoply</strong>
-          <div style={{color: '#94a3b8'}}>Simple e-commerce frontend built with React + Vite</div>
+          <p>Curated products and a polished shopping experience for everyday buyers.</p>
         </div>
-        <div style={{display: 'flex', gap: 18, color: '#94a3b8'}}>
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Contact</a>
+
+        <div className="footer-group">
+          <h4>Shop</h4>
+          <Link to="/products">Products</Link>
+          <Link to="/">Home</Link>
+          <Link to="/cart">Cart</Link>
         </div>
+
+        <div className="footer-group">
+          <h4>Account</h4>
+          <Link to="/login">Login</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/profile">Profile</Link>
+        </div>
+
+        <div className="footer-group">
+          <h4>Contact</h4>
+          <a href="mailto:support@shoply.com">
+            <FiMail size={16} /> support@shoply.com
+          </a>
+          <a href="tel:+1234567890">
+            <FiPhone size={16} /> +1 234 567 890
+          </a>
+          <div className="footer-socials">
+            <a href="#" aria-label="Instagram">
+              <FiInstagram size={18} />
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="footer-bottom">
+        <span>© {new Date().getFullYear()} Shoply. Built for seamless shopping.</span>
       </div>
     </footer>
   );

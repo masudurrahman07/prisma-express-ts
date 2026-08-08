@@ -1,4 +1,4 @@
-import { Order, Product, User } from "./types";
+import { Category, Order, Product, User } from "./types";
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL ?? "http://localhost:5000";
 
@@ -11,6 +11,18 @@ interface ApiResponse<T> {
 type ApiRequestInit = Omit<RequestInit, "body"> & {
   body?: any;
 };
+
+function normalizeApiResponse<T>(json: any): ApiResponse<T> {
+  if (json && typeof json === "object" && "data" in json) {
+    return json as ApiResponse<T>;
+  }
+
+  return {
+    success: true,
+    message: "",
+    data: json as T,
+  };
+}
 
 async function apiFetch<T>(path: string, options: ApiRequestInit = {}): Promise<ApiResponse<T>> {
   const headers: Record<string, string> = {};
@@ -29,17 +41,33 @@ async function apiFetch<T>(path: string, options: ApiRequestInit = {}): Promise<
   }
 
   const response = await fetch(`${API_BASE_URL}${path}`, init);
-  const json = (await response.json()) as ApiResponse<T>;
+  const json = await response.json();
+  const normalized = normalizeApiResponse<T>(json);
+
   if (!response.ok) {
-    throw new Error(json?.message || response.statusText || "API request failed");
+    throw new Error(normalized?.message || response.statusText || "API request failed");
   }
-  return json;
+
+  return normalized;
 }
 
 function parseProduct(product: any): Product {
   return {
     ...product,
     price: Number(product.price ?? 0),
+  };
+}
+
+function parseOrder(order: any): Order {
+  return {
+    ...order,
+    total: Number(order.total ?? 0),
+    items: Array.isArray(order.items)
+      ? order.items.map((item: any) => ({
+          ...item,
+          priceAtPurchase: Number(item.priceAtPurchase ?? 0),
+        }))
+      : [],
   };
 }
 
@@ -55,7 +83,11 @@ export const productsApi = {
   get: (id: string) => apiFetch<Product>(`/api/v1/products/${id}`, { method: "GET" }).then((response) => ({ ...response, data: parseProduct(response.data) })),
 };
 
+export const categoriesApi = {
+  list: () => apiFetch<Category[]>("/api/v1/categories", { method: "GET" }),
+};
+
 export const ordersApi = {
-  list: () => apiFetch<Order[]>("/api/v1/orders", { method: "GET" }),
+  list: () => apiFetch<Order[]>("/api/v1/orders", { method: "GET" }).then((response) => ({ ...response, data: response.data.map(parseOrder) })),
   create: (items: Array<{ productId: string; quantity: number }>) => apiFetch<Order>("/api/v1/orders", { method: "POST", body: { items } }),
 };
