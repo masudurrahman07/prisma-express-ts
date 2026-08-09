@@ -1,4 +1,4 @@
-# prisma-express-ts
+# shoply
 
 Simple e-commerce demo using Prisma + Express + TypeScript (backend) and React + Vite + TypeScript (frontend).
 
