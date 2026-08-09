@@ -2,16 +2,24 @@ import { FormEvent, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import Swal from "sweetalert2";
-import { FiUser, FiAtSign, FiLock } from "react-icons/fi";
+import { User, Mail, Lock, Store, Eye, EyeOff, UserPlus, ShieldCheck } from "lucide-react";
+
+const FEATURES = [
+  "Cart persists automatically across sessions",
+  "Full order history available immediately",
+  "Secure account with cookie-based auth",
+  "Browse and shop with no friction",
+];
 
 export default function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName]         = useState("");
+  const [email, setEmail]       = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
-  const { register } = useAuth();
-  const navigate = useNavigate();
+  const [showPw, setShowPw]     = useState(false);
+  const [error, setError]       = useState<string | null>(null);
+  const [loading, setLoading]   = useState(false);
+  const { register }            = useAuth();
+  const navigate                = useNavigate();
 
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
@@ -19,58 +27,156 @@ export default function Register() {
     setLoading(true);
     try {
       await register({ name, email, password });
-      await Swal.fire({ icon: "success", title: "Welcome!", text: "Registration completed successfully.", timer: 1400, showConfirmButton: false });
+      await Swal.fire({
+        icon: "success",
+        title: "Account created!",
+        text: "Welcome to Shoply.",
+        timer: 1400,
+        showConfirmButton: false,
+      });
       navigate("/");
     } catch (err: any) {
-      setError(err.message || "Register failed");
+      setError(err.message || "Registration failed. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="page auth-page auth-shell">
-      <div className="auth-visual auth-visual-register">
-        <div>
-          <span className="eyebrow">Join Shoply</span>
-          <h2>Create your account</h2>
-          <p>Register now and enjoy quick checkout, order tracking, and cart saving.</p>
+    <div className="auth-page-wrap">
+      {/* ── Left: decorative visual panel ── */}
+      <div className="auth-visual-panel" aria-hidden="true">
+        <div className="auth-visual-content">
+          <Link to="/" className="auth-visual-logo" tabIndex={-1}>
+            <span className="auth-visual-logo-icon">
+              <Store size={22} strokeWidth={2.2} />
+            </span>
+            <span className="auth-visual-logo-name">Shoply</span>
+          </Link>
+
+          <h2 className="auth-visual-headline">
+            Join thousands<br />of happy shoppers.
+          </h2>
+          <p className="auth-visual-sub">
+            Create your free account in seconds and unlock a clean,
+            modern shopping experience built for speed and simplicity.
+          </p>
+
+          <ul className="auth-visual-features">
+            {FEATURES.map((f) => (
+              <li key={f} className="auth-visual-feature">
+                <span className="auth-visual-feature-dot" aria-hidden="true" />
+                {f}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <div className="auth-panel">
-        <h2>Register</h2>
-        <p className="section-subtitle">Create your account using your details below.</p>
-        <form onSubmit={handleSubmit} className="auth-form">
-          <label>
-            <span>Name</span>
-            <div className="input-icon-group">
-              <FiUser size={18} />
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+
+      {/* ── Right: form panel ── */}
+      <div className="auth-form-panel">
+        <div className="auth-card">
+          {/* Brand */}
+          <Link to="/" className="auth-brand" aria-label="Shoply home">
+            <span className="auth-brand-icon" aria-hidden="true">
+              <Store size={20} strokeWidth={2.2} />
+            </span>
+            <span className="auth-brand-name">Shoply</span>
+          </Link>
+
+          <div className="auth-card-header">
+            <h1 className="auth-heading">Create your account</h1>
+            <p className="auth-subheading">
+              Join Shoply for fast checkout, order tracking, and a persistent cart.
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="auth-form" noValidate>
+            <div className="auth-field">
+              <label htmlFor="reg-name">Full Name</label>
+              <div className="auth-input-wrap">
+                <User size={16} strokeWidth={2} className="auth-input-icon" />
+                <input
+                  id="reg-name"
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="Your name"
+                  required
+                  autoComplete="name"
+                />
+              </div>
             </div>
-          </label>
-          <label>
-            <span>Email</span>
-            <div className="input-icon-group">
-              <FiAtSign size={18} />
-              <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+
+            <div className="auth-field">
+              <label htmlFor="reg-email">Email address</label>
+              <div className="auth-input-wrap">
+                <Mail size={16} strokeWidth={2} className="auth-input-icon" />
+                <input
+                  id="reg-email"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  required
+                  autoComplete="email"
+                />
+              </div>
             </div>
-          </label>
-          <label>
-            <span>Password</span>
-            <div className="input-icon-group">
-              <FiLock size={18} />
-              <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+
+            <div className="auth-field">
+              <label htmlFor="reg-password">Password</label>
+              <div className="auth-input-wrap">
+                <Lock size={16} strokeWidth={2} className="auth-input-icon" />
+                <input
+                  id="reg-password"
+                  type={showPw ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Choose a strong password"
+                  required
+                  autoComplete="new-password"
+                />
+                <button
+                  type="button"
+                  className="auth-input-toggle"
+                  onClick={() => setShowPw((v) => !v)}
+                  aria-label={showPw ? "Hide password" : "Show password"}
+                >
+                  {showPw
+                    ? <EyeOff size={15} strokeWidth={2} />
+                    : <Eye    size={15} strokeWidth={2} />}
+                </button>
+              </div>
             </div>
-          </label>
-          {error && <p className="error">{error}</p>}
-          <button type="submit" className="button" disabled={loading}>
-            {loading ? "Creating account..." : "Register"}
-          </button>
-        </form>
-        <p className="auth-footer-text">
-          Already have an account? <Link to="/login">Login</Link>
-        </p>
+
+            {error && (
+              <div className="auth-error-box" role="alert">
+                <ShieldCheck size={15} strokeWidth={2} style={{ flexShrink: 0, marginTop: 1 }} />
+                {error}
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="btn btn--primary btn--lg auth-submit-btn"
+              disabled={loading}
+            >
+              {loading
+                ? <span className="auth-spinner" aria-hidden="true" />
+                : <UserPlus size={16} strokeWidth={2} />}
+              {loading ? "Creating account…" : "Create Account"}
+            </button>
+          </form>
+
+          <p className="auth-switch-text">
+            Already have an account?{" "}
+            <Link to="/login" className="auth-switch-link">
+              Sign in
+            </Link>
+          </p>
+        </div>
       </div>
-    </section>
+    </div>
   );
 }
