@@ -14,6 +14,14 @@ const frontendOrigin = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
 app.use(cors({ origin: frontendOrigin, credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
+app.get("/", (_req, res) => {
+  res.json({
+    success: true,
+    message: "Shoply API server is running successfully.",
+    status: "ok",
+  });
+});
+
 app.use("/api/v1", routes);
 app.use("/api/auth", authRoutes);
 
