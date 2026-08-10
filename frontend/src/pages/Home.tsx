@@ -18,6 +18,9 @@ import {
   LayoutGrid,
   BadgeCheck,
   Headphones,
+  ShoppingBag,
+  Sparkles,
+  Check,
 } from "lucide-react";
 import { productsApi, categoriesApi } from "../api";
 import { Product, Category } from "../types";
@@ -176,16 +179,29 @@ export default function Home() {
       {/* ══════════════════════════════════════════════
           1. HERO
       ══════════════════════════════════════════════ */}
+      {/* ══════════════════════════════════════════════
+          1. HERO
+      ══════════════════════════════════════════════ */}
       <section className="hp-hero">
+        {/* Continuous Drifting Aurora Atmosphere */}
+        <div className="hp-hero-aurora-bg" aria-hidden="true">
+          <div className="hp-hero-grid-overlay" />
+          <div className="hp-hero-aurora-blob hp-hero-aurora-blob--1" />
+          <div className="hp-hero-aurora-blob hp-hero-aurora-blob--2" />
+          <div className="hp-hero-aurora-blob hp-hero-aurora-blob--3" />
+        </div>
+
         <div className="hp-hero-inner">
           {/* Left copy */}
           <div className="hp-hero-copy">
-            <motion.span className="eyebrow" {...fadeUp(0)}>
-              Welcome to Shoply
-            </motion.span>
+            <motion.div className="hp-hero-badge" {...fadeUp(0)}>
+              <ShoppingBag size={14} className="hp-hero-badge-icon" />
+              <span>Your modern shopping destination</span>
+            </motion.div>
 
             <motion.h1 className="hp-hero-headline" {...fadeUp(0.08)}>
-              Discover products you'll actually love.
+              Discover products <br className="hp-br-desktop" />
+              you'll <span className="hp-headline-highlight">actually love.</span>
             </motion.h1>
 
             <motion.p className="hp-hero-sub" {...fadeUp(0.14)}>
@@ -194,11 +210,11 @@ export default function Home() {
             </motion.p>
 
             <motion.div className="hp-hero-ctas" {...fadeUp(0.2)}>
-              <Link to="/products" className="btn btn--primary btn--lg">
+              <Link to="/products" className="btn btn--primary btn--lg hp-hero-btn-primary">
                 Shop Now
                 <ArrowRight size={17} strokeWidth={2.2} />
               </Link>
-              <Link to="/products" className="btn btn--outline btn--lg">
+              <Link to="/products" className="btn btn--outline btn--lg hp-hero-btn-secondary">
                 Explore Products
               </Link>
             </motion.div>
@@ -213,60 +229,133 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right visual */}
+          {/* Right visual - Premium E-Commerce Glass Preview */}
           <motion.div
-            className="hp-hero-visual"
-            initial={{ opacity: 0, scale: 0.97, x: 20 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" as const }}
+            className="hp-hero-preview-wrap"
+            initial={{ opacity: 0, scale: 0.96, y: 24 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" as const }}
           >
-            {/* Decorative blobs */}
-            <div className="hp-hero-blob hp-hero-blob--1" aria-hidden="true" />
-            <div className="hp-hero-blob hp-hero-blob--2" aria-hidden="true" />
+            {/* Glow backdrop */}
+            <div className="hp-hero-preview-glow" aria-hidden="true" />
 
-            {/* Main card */}
-            <div className="hp-hero-card hp-hero-card--main">
-              <div className="hp-hero-card-icon" aria-hidden="true">🛍️</div>
-              <strong>Shop Smarter</strong>
-              <p>Everything organized, always available.</p>
-              <div className="hp-hero-card-tags">
-                <span className="hp-hero-card-tag">Curated</span>
-                <span className="hp-hero-card-tag">Verified</span>
+            {/* Main Glass Card */}
+            <div className="hp-hero-glass-card">
+              {/* Browser/Store Header */}
+              <div className="hp-hero-glass-header">
+                <div className="hp-hero-glass-dots" aria-hidden="true">
+                  <span className="dot dot--red" />
+                  <span className="dot dot--yellow" />
+                  <span className="dot dot--green" />
+                </div>
+                <div className="hp-hero-glass-title">
+                  <Sparkles size={13} className="hp-sparkle-icon" />
+                  <span>Shoply Storefront</span>
+                </div>
+                <div className="hp-hero-glass-status">
+                  <span className="hp-status-dot" /> Live
+                </div>
               </div>
-            </div>
 
-            {/* Floating stat cards */}
-            <div className="hp-hero-float hp-hero-float--tl">
-              <span className="hp-hero-float-val">500+</span>
-              <span className="hp-hero-float-label">Products</span>
-            </div>
+              {/* Glass Card Body */}
+              <div className="hp-hero-glass-body">
+                {/* Store Search/Header Bar */}
+                <div className="hp-hero-glass-search">
+                  <div className="hp-hero-search-left">
+                    <span className="hp-search-tag">Featured Catalog</span>
+                  </div>
+                  <div className="hp-hero-search-right">
+                    <ShoppingCart size={14} />
+                    <span className="hp-cart-badge-count">
+                      {featured.slice(0, 3).length > 0 ? featured.slice(0, 3).length : "0"}
+                    </span>
+                  </div>
+                </div>
 
-            <div className="hp-hero-float hp-hero-float--br">
-              <span className="hp-hero-float-val">20+</span>
-              <span className="hp-hero-float-label">Categories</span>
-            </div>
-
-            {/* Mini product previews */}
-            {featured.slice(0, 2).map((p, i) => (
-              <div
-                key={p.id}
-                className={`hp-hero-mini-card hp-hero-mini-card--${i === 0 ? "a" : "b"}`}
-              >
-                <div className="hp-hero-mini-thumb" aria-hidden="true">
-                  {p.imageUrl ? (
-                    <img src={p.imageUrl} alt="" />
+                {/* Product List Inside Preview */}
+                <div className="hp-hero-preview-products">
+                  {featured.length > 0 ? (
+                    featured.slice(0, 3).map((p, idx) => (
+                      <div key={p.id || idx} className="hp-preview-product-row">
+                        <div className="hp-preview-thumb">
+                          {p.imageUrl ? (
+                            <img src={p.imageUrl} alt={p.title} />
+                          ) : (
+                            <span className="hp-preview-thumb-fallback">🛍️</span>
+                          )}
+                        </div>
+                        <div className="hp-preview-product-info">
+                          <strong className="hp-preview-product-title">
+                            {p.title.length > 24 ? p.title.slice(0, 24) + "…" : p.title}
+                          </strong>
+                          <span className="hp-preview-product-cat">
+                            {p.category?.name ?? "Featured"}
+                          </span>
+                        </div>
+                        <div className="hp-preview-product-price">
+                          {p.currency ?? "$"}{typeof p.price === 'number' ? p.price.toFixed(2) : p.price}
+                        </div>
+                      </div>
+                    ))
                   ) : (
-                    <span>📦</span>
+                    // Skeleton / Fallback preview items if loading
+                    [1, 2, 3].map((i) => (
+                      <div key={i} className="hp-preview-product-row hp-preview-product-row--skeleton">
+                        <div className="hp-preview-thumb hp-skeleton-box" />
+                        <div className="hp-preview-product-info">
+                          <div className="hp-skeleton-line hp-skeleton-line--title" />
+                          <div className="hp-skeleton-line hp-skeleton-line--sub" />
+                        </div>
+                        <div className="hp-skeleton-line hp-skeleton-line--price" />
+                      </div>
+                    ))
                   )}
                 </div>
-                <div>
-                  <strong className="hp-hero-mini-title">{p.title.length > 22 ? p.title.slice(0, 22) + "…" : p.title}</strong>
-                  <span className="hp-hero-mini-price">
-                    {p.currency ?? "$"}{p.price.toFixed(2)}
-                  </span>
+
+                {/* Cart Confirmation Chip */}
+                <div className="hp-hero-cart-confirm">
+                  <div className="hp-cart-confirm-icon">
+                    <Check size={13} strokeWidth={3} />
+                  </div>
+                  <div className="hp-cart-confirm-text">
+                    <strong>Added to cart</strong>
+                    <span>Express Checkout Ready</span>
+                  </div>
+                  <span className="hp-cart-confirm-time">Just now</span>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Floating Glass Chips */}
+            <motion.div
+              className="hp-hero-float-chip hp-hero-float-chip--tl"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" as const }}
+            >
+              <div className="hp-float-chip-icon hp-float-chip-icon--blue">
+                <Package size={15} />
+              </div>
+              <div className="hp-float-chip-info">
+                <strong>500+</strong>
+                <span>Products</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="hp-hero-float-chip hp-hero-float-chip--br"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" as const }}
+            >
+              <div className="hp-float-chip-icon hp-float-chip-icon--green">
+                <ShieldCheck size={15} />
+              </div>
+              <div className="hp-float-chip-info">
+                <strong>Secure Shopping</strong>
+                <span>100% Protected</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
