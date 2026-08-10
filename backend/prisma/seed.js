@@ -30,7 +30,7 @@ async function main() {
       price: '89.99',
       currency: 'USD',
       category: 'Electronics',
-      imageUrl: 'https://images.unsplash.com/photo-1518441902112-7d6a1b9d4b3a?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=6a9b4b9b6f8b4b6c',
+      imageUrl: 'https://i.ibb.co.com/KpmwMzML/90f8ff84c54f9e2844761a865ec290e8-png-720x720q80.png',
     },
     {
       title: 'Stainless Steel Cookware Set',
@@ -39,7 +39,7 @@ async function main() {
       price: '129.95',
       currency: 'USD',
       category: 'Home & Kitchen',
-      imageUrl: 'https://images.unsplash.com/photo-1542444459-db6c60a2f0f6?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=5a2a2d1d3f6a4c2e',
+      imageUrl: 'https://i.ibb.co.com/fd5VcMGL/images.jpg',
     },
     {
       title: 'Modern Minimalist T-Shirt',
@@ -48,7 +48,7 @@ async function main() {
       price: '24.50',
       currency: 'USD',
       category: 'Apparel',
-      imageUrl: 'https://images.unsplash.com/photo-1520975910075-4b7a3a1a1cba?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b2d2c2d1f6b7a8c',
+      imageUrl: 'https://i.ibb.co.com/hRVpD6x7/images.jpg',
     },
     {
       title: 'The Practical Programmer',
@@ -57,7 +57,7 @@ async function main() {
       price: '34.00',
       currency: 'USD',
       category: 'Books',
-      imageUrl: 'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=2d3c4b5a6b7c8d9e',
+      imageUrl: 'https://i.ibb.co.com/Xfjcr5xK/images.jpg',
     },
     {
       title: 'Portable Charger 10000mAh',
@@ -66,7 +66,7 @@ async function main() {
       price: '29.99',
       currency: 'USD',
       category: 'Electronics',
-      imageUrl: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=800&auto=format&fit=crop&ixlib=rb-4.0.3&s=9b8a7a6c5d4e3f2a',
+      imageUrl: 'https://i.ibb.co.com/9mqmM0Mg/images.jpg',
     },
   ];
 

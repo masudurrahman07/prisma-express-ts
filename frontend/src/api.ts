@@ -51,10 +51,25 @@ async function apiFetch<T>(path: string, options: ApiRequestInit = {}): Promise<
   return normalized;
 }
 
+const PRODUCT_IMAGE_URL_OVERRIDE: Record<string, string> = {
+  "Wireless Bluetooth Headphones":
+    "https://i.ibb.co.com/KpmwMzML/90f8ff84c54f9e2844761a865ec290e8-png-720x720q80.png",
+  "Stainless Steel Cookware Set":
+    "https://i.ibb.co.com/fd5VcMGL/images.jpg",
+  "Modern Minimalist T-Shirt":
+    "https://i.ibb.co.com/hRVpD6x7/images.jpg",
+  "The Practical Programmer":
+    "https://i.ibb.co.com/Xfjcr5xK/images.jpg",
+  "Portable Charger 10000mAh":
+    "https://i.ibb.co.com/9mqmM0Mg/images.jpg",
+};
+
 function parseProduct(product: any): Product {
   return {
     ...product,
     price: Number(product.price ?? 0),
+    imageUrl:
+      product.imageUrl ?? PRODUCT_IMAGE_URL_OVERRIDE[product.title] ?? null,
   };
 }
 
