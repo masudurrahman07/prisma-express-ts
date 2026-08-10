@@ -46,7 +46,7 @@ export default function Products() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Derive unique categories from product data
+
   const categories = useMemo(() => {
     const seen = new Set<string>();
     const cats: string[] = [];
@@ -60,7 +60,7 @@ export default function Products() {
     return cats.sort();
   }, [allProducts]);
 
-  // Client-side filter + sort
+ 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
     let list = allProducts.filter((p) => {
@@ -93,7 +93,7 @@ export default function Products() {
   return (
     <section className="products-page">
 
-      {/* ── Page header ── */}
+    
       <div className="products-header">
         <div className="products-header-copy">
           <span className="eyebrow">Catalog</span>
@@ -109,9 +109,8 @@ export default function Products() {
         )}
       </div>
 
-      {/* ── Toolbar ── */}
       <div className="products-toolbar">
-        {/* Search */}
+     
         <div className="products-search-wrap">
           <Search size={16} strokeWidth={2} className="products-search-icon" />
           <input
@@ -120,27 +119,23 @@ export default function Products() {
             placeholder="Search by name, category, or description…"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            aria-label="Search products"
-          />
+            aria-label="Search products" />
           {search && (
             <button
               type="button"
               className="products-search-clear"
               onClick={() => setSearch("")}
-              aria-label="Clear search"
-            >
+              aria-label="Clear search">
               <X size={15} strokeWidth={2.5} />
             </button>
           )}
         </div>
 
-        {/* Category pills */}
         <div className="products-cats" role="group" aria-label="Filter by category">
           <button
             type="button"
             className={`products-cat-pill${category === "all" ? " products-cat-pill--active" : ""}`}
-            onClick={() => setCategory("all")}
-          >
+            onClick={() => setCategory("all")}>
             All
           </button>
           {categories.map((cat) => (
@@ -148,22 +143,20 @@ export default function Products() {
               key={cat}
               type="button"
               className={`products-cat-pill${category === cat ? " products-cat-pill--active" : ""}`}
-              onClick={() => setCategory(cat)}
-            >
+              onClick={() => setCategory(cat)}  >
               {cat}
             </button>
           ))}
         </div>
 
-        {/* Sort dropdown */}
+    
         <div className="products-sort-wrap">
           <button
             type="button"
             className="products-sort-btn"
             onClick={() => setSortOpen((v) => !v)}
             aria-haspopup="listbox"
-            aria-expanded={sortOpen}
-          >
+            aria-expanded={sortOpen} >
             <SlidersHorizontal size={15} strokeWidth={2} />
             {SORT_LABELS[sort]}
             <ChevronDown size={14} strokeWidth={2.5} className={sortOpen ? "sort-chevron-open" : ""} />
@@ -177,8 +170,7 @@ export default function Products() {
                   aria-selected={sort === key}
                   type="button"
                   className={`products-sort-option${sort === key ? " products-sort-option--active" : ""}`}
-                  onClick={() => { setSort(key); setSortOpen(false); }}
-                >
+                  onClick={() => { setSort(key); setSortOpen(false); }}  >
                   {label}
                 </button>
               ))}
@@ -187,14 +179,14 @@ export default function Products() {
         </div>
       </div>
 
-      {/* ── Error ── */}
+  
       {error && (
         <div className="products-error">
           <p className="error">{error}</p>
         </div>
       )}
 
-      {/* ── Grid ── */}
+     
       {loading ? (
         <div className="products-grid">
           {Array.from({ length: 8 }).map((_, i) => (
@@ -222,8 +214,7 @@ export default function Products() {
             className="products-grid"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
+            transition={{ duration: 0.3 }}>
             {filtered.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

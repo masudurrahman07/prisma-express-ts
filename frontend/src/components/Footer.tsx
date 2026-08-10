@@ -18,9 +18,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="footer-inner">
-        {/* ── Grid columns ── */}
         <div className="footer-grid">
-          {/* Column 1 – Brand */}
           <div className="footer-col footer-col--brand">
             <Link to="/" className="footer-brand-link" aria-label="Shoply home">
               <span className="footer-brand-icon" aria-hidden="true">
@@ -46,7 +44,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2 – Quick Links */}
+        
           <div className="footer-col">
             <h3 className="footer-heading">Quick Links</h3>
             <ul className="footer-links">
@@ -73,7 +71,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3 – Customer */}
+          
           <div className="footer-col">
             <h3 className="footer-heading">Customer</h3>
             <ul className="footer-links">
@@ -138,7 +136,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* ── Bottom bar ── */}
+       
         <div className="footer-bottom">
           <p className="footer-copy">
             © {year} Shoply. All rights reserved.

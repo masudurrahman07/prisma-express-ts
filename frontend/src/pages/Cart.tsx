@@ -71,7 +71,7 @@ export default function Cart() {
     }
   };
 
-  /* ───────────────── Empty Cart ───────────────── */
+ 
 
   if (items.length === 0) {
     return (
@@ -92,8 +92,7 @@ export default function Cart() {
 
           <Link
             to="/products"
-            className="btn btn--primary btn--lg cart-empty-btn"
-          >
+            className="btn btn--primary btn--lg cart-empty-btn">
             Start Shopping
             <ArrowRight size={17} />
           </Link>
@@ -102,11 +101,11 @@ export default function Cart() {
     );
   }
 
-  /* ───────────────── Cart ───────────────── */
+  
 
   return (
     <main className="page cart-page">
-      {/* Header */}
+      
       <header className="cart-page-header">
         <div className="cart-heading-content">
           <span className="eyebrow">Shopping Bag</span>
@@ -125,9 +124,8 @@ export default function Cart() {
         </Link>
       </header>
 
-      {/* Cart Content */}
       <div className="cart-layout">
-        {/* ───────────── Items ───────────── */}
+       
         <section className="cart-items-section">
           <div className="cart-section-heading">
             <div>
@@ -147,12 +145,11 @@ export default function Cart() {
           <div className="cart-list">
             {items.map((item) => (
               <article key={item.productId} className="cart-item-card">
-                {/* Product image */}
+          
                 <Link
                   to={`/products/${item.productId}`}
                   className="cart-item-thumb"
-                  aria-label={`View ${item.title}`}
-                >
+                  aria-label={`View ${item.title}`}>
                   {item.imageUrl ? (
                     <img src={item.imageUrl} alt={item.title} />
                   ) : (
@@ -162,7 +159,7 @@ export default function Cart() {
                   )}
                 </Link>
 
-                {/* Product information */}
+             
                 <div className="cart-item-info">
                   <div className="cart-item-top">
                     <div className="cart-item-details">
@@ -174,8 +171,7 @@ export default function Cart() {
 
                       <Link
                         to={`/products/${item.productId}`}
-                        className="cart-item-title"
-                      >
+                        className="cart-item-title">
                         {item.title}
                       </Link>
 
@@ -184,21 +180,20 @@ export default function Cart() {
                       </span>
                     </div>
 
-                    {/* Desktop remove */}
+               
                     <button
                       type="button"
                       className="cart-remove-btn cart-remove-btn--desktop"
                       onClick={() =>
                         handleRemove(item.productId, item.title)
                       }
-                      aria-label={`Remove ${item.title}`}
-                    >
+                      aria-label={`Remove ${item.title}`}>
                       <Trash2 size={16} strokeWidth={1.8} />
                     </button>
                   </div>
 
                   <div className="cart-item-bottom">
-                    {/* Quantity */}
+                   
                     <div className="cart-item-control">
                       <span className="cart-control-label">Quantity</span>
 
@@ -213,8 +208,7 @@ export default function Cart() {
                             )
                           }
                           disabled={item.quantity <= 1}
-                          aria-label="Decrease quantity"
-                        >
+                          aria-label="Decrease quantity">
                           <Minus size={14} strokeWidth={2.5} />
                         </button>
 
@@ -229,8 +223,7 @@ export default function Cart() {
                             )
                           }
                           aria-label="Quantity"
-                          className="cart-qty-input"
-                        />
+                          className="cart-qty-input"/>
 
                         <button
                           type="button"
@@ -241,14 +234,13 @@ export default function Cart() {
                               item.quantity + 1
                             )
                           }
-                          aria-label="Increase quantity"
-                        >
+                          aria-label="Increase quantity"  >
                           <Plus size={14} strokeWidth={2.5} />
                         </button>
                       </div>
                     </div>
 
-                    {/* Item subtotal */}
+                  
                     <div className="cart-item-price">
                       <span className="cart-control-label">Subtotal</span>
 
@@ -257,15 +249,14 @@ export default function Cart() {
                       </strong>
                     </div>
 
-                    {/* Mobile remove */}
+                    
                     <button
                       type="button"
                       className="cart-remove-btn cart-remove-btn--mobile"
                       onClick={() =>
                         handleRemove(item.productId, item.title)
                       }
-                      aria-label={`Remove ${item.title}`}
-                    >
+                      aria-label={`Remove ${item.title}`}>
                       <Trash2 size={15} strokeWidth={1.8} />
                       <span>Remove</span>
                     </button>
@@ -275,7 +266,7 @@ export default function Cart() {
             ))}
           </div>
 
-          {/* Delivery reassurance */}
+    
           <div className="cart-benefits">
             <div className="cart-benefit">
               <div className="cart-benefit-icon">
@@ -301,7 +292,7 @@ export default function Cart() {
           </div>
         </section>
 
-        {/* ───────────── Summary ───────────── */}
+       
         <aside className="cart-summary">
           <div className="cart-summary-header">
             <div>
@@ -346,8 +337,7 @@ export default function Cart() {
             type="button"
             className="btn btn--primary btn--lg cart-checkout-btn"
             onClick={handleCheckout}
-            disabled={loading}
-          >
+            disabled={loading}>
             {loading ? (
               <>
                 <span className="auth-spinner" aria-hidden="true" />

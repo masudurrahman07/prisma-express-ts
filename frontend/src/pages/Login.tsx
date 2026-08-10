@@ -44,7 +44,7 @@ export default function Login() {
 
   return (
     <div className="auth-page-wrap">
-      {/* ── Left: decorative visual panel ── */}
+
       <div className="auth-visual-panel" aria-hidden="true">
         <div className="auth-visual-content">
           <Link to="/" className="auth-visual-logo" tabIndex={-1}>
@@ -73,10 +73,10 @@ export default function Login() {
         </div>
       </div>
 
-      {/* ── Right: form panel ── */}
+     
       <div className="auth-form-panel">
         <div className="auth-card">
-          {/* Brand */}
+        
           <Link to="/" className="auth-brand" aria-label="Shoply home">
             <span className="auth-brand-icon" aria-hidden="true">
               <Store size={20} strokeWidth={2.2} />
@@ -103,8 +103,7 @@ export default function Login() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  autoComplete="email"
-                />
+                  autoComplete="email"/>
               </div>
             </div>
 
@@ -119,14 +118,12 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Your password"
                   required
-                  autoComplete="current-password"
-                />
+                  autoComplete="current-password"  />
                 <button
                   type="button"
                   className="auth-input-toggle"
                   onClick={() => setShowPw((v) => !v)}
-                  aria-label={showPw ? "Hide password" : "Show password"}
-                >
+                  aria-label={showPw ? "Hide password" : "Show password"}>
                   {showPw
                     ? <EyeOff size={15} strokeWidth={2} />
                     : <Eye    size={15} strokeWidth={2} />}
@@ -144,8 +141,7 @@ export default function Login() {
             <button
               type="submit"
               className="btn btn--primary btn--lg auth-submit-btn"
-              disabled={loading}
-            >
+              disabled={loading}  >
               {loading
                 ? <span className="auth-spinner" aria-hidden="true" />
                 : <LogIn size={16} strokeWidth={2} />}

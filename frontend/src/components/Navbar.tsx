@@ -55,7 +55,7 @@ export default function Navbar() {
   return (
     <nav className={`navbar${scrolled ? " navbar--scrolled" : ""}`} role="navigation" aria-label="Main navigation">
       <div className="navbar-inner">
-        {/* ── Brand ── */}
+       
         <NavLink to="/" className="nav-brand" onClick={close} aria-label="Shoply home">
           <span className="nav-brand__icon" aria-hidden="true">
             <Store size={22} strokeWidth={2.2} />
@@ -66,7 +66,7 @@ export default function Navbar() {
           </span>
         </NavLink>
 
-        {/* ── Center links (desktop) ── */}
+     
         <div className="nav-center" role="list">
           <NavLink to="/" className={linkClass} onClick={close} role="listitem">
             <Home size={15} strokeWidth={2} />
@@ -86,19 +86,18 @@ export default function Navbar() {
           </NavLink>
         </div>
 
-        {/* ── Right actions (desktop) ── */}
+       
         <div className="nav-actions">
           {user ? (
             <>
-              {/* Cart — auth only */}
+              
               <NavLink
                 to="/cart"
                 className={({ isActive }) =>
                   `nav-link nav-link--cart${isActive ? " nav-link--active" : ""}`
                 }
                 onClick={close}
-                aria-label={`Cart, ${cartCount} items`}
-              >
+                aria-label={`Cart, ${cartCount} items`}>
                 <ShoppingBag size={16} strokeWidth={2} />
                 Cart
                 {cartCount > 0 && (
@@ -121,8 +120,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="btn btn--outline btn--sm nav-logout-btn"
-              >
+                className="btn btn--outline btn--sm nav-logout-btn">
                 <LogOut size={15} strokeWidth={2} />
                 Logout
               </button>
@@ -132,16 +130,14 @@ export default function Navbar() {
               <NavLink
                 to="/login"
                 className="btn btn--outline btn--sm"
-                onClick={close}
-              >
+                onClick={close}>
                 <LogIn size={15} strokeWidth={2} />
                 Login
               </NavLink>
               <NavLink
                 to="/register"
                 className="btn btn--primary btn--sm"
-                onClick={close}
-              >
+                onClick={close}>
                 <UserPlus size={15} strokeWidth={2} />
                 Register
               </NavLink>
@@ -149,24 +145,22 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* ── Mobile toggle ── */}
+       
         <button
           className="nav-mobile-toggle"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
           aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-        >
+          aria-controls="mobile-menu">
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
-      {/* ── Mobile drawer ── */}
+      
       <div
         id="mobile-menu"
         className={`nav-mobile-menu${mobileOpen ? " nav-mobile-menu--open" : ""}`}
-        aria-hidden={!mobileOpen}
-      >
+        aria-hidden={!mobileOpen}>
         <div className="nav-mobile-links">
           <NavLink to="/" className={linkClass} onClick={close}>
             <Home size={16} /> Home
@@ -188,8 +182,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `nav-link nav-link--cart${isActive ? " nav-link--active" : ""}`
                 }
-                onClick={close}
-              >
+                onClick={close}>
                 <ShoppingBag size={16} />
                 Cart
                 {cartCount > 0 && (
@@ -210,8 +203,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={handleLogout}
-                className="btn btn--outline btn--sm"
-              >
+                className="btn btn--outline btn--sm">
                 <LogOut size={15} /> Logout
               </button>
             ) : (

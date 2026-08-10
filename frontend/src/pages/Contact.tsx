@@ -38,20 +38,16 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // UI-only form — no backend endpoint exists for contact submissions.
-    // In a production environment this would POST to an API or email service.
     setSubmitted(true);
   };
 
   return (
     <div className="contact-page">
-      {/* ── Page header ── */}
       <motion.section
         className="contact-hero"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-      >
+        transition={{ duration: 0.45 }}>
         <span className="eyebrow">Contact</span>
         <h1>We'd love to hear from you.</h1>
         <p>
@@ -60,15 +56,14 @@ export default function Contact() {
         </p>
       </motion.section>
 
-      {/* ── Two-column layout ── */}
+    
       <section className="contact-body">
-        {/* Info column */}
+    
         <motion.div
           className="contact-info"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
+          transition={{ duration: 0.5, delay: 0.1 }}>
           <h2>Contact Information</h2>
           <p className="contact-info-sub">
             Our support team is available Monday through Friday and typically responds within one
@@ -95,13 +90,12 @@ export default function Contact() {
           </ul>
         </motion.div>
 
-        {/* Form column */}
+        
         <motion.div
           className="contact-form-wrap"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-        >
+          transition={{ duration: 0.5, delay: 0.15 }}>
           {submitted ? (
             <div className="contact-success">
               <CheckCircle size={44} strokeWidth={1.5} className="contact-success-icon" />
@@ -119,8 +113,7 @@ export default function Contact() {
                   setEmail("");
                   setSubject("");
                   setMessage("");
-                }}
-              >
+                }}>
                 Send another message
               </button>
             </div>
@@ -138,8 +131,7 @@ export default function Contact() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      required
-                    />
+                      required/>
                   </div>
                   <div className="contact-field">
                     <label htmlFor="cf-email">Email Address</label>
@@ -149,8 +141,7 @@ export default function Contact() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      required
-                    />
+                      required  />
                   </div>
                 </div>
 
@@ -162,8 +153,7 @@ export default function Contact() {
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     placeholder="What's this about?"
-                    required
-                  />
+                    required/>
                 </div>
 
                 <div className="contact-field">
@@ -174,8 +164,7 @@ export default function Contact() {
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Tell us what's on your mind..."
-                    required
-                  />
+                    required/>
                 </div>
 
                 <button type="submit" className="btn btn--primary btn--lg contact-submit-btn">

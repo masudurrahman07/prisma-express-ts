@@ -8,7 +8,7 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "7d";
 const COOKIE_NAME = process.env.AUTH_COOKIE_NAME || "auth_token";
 
 function signToken(payload: object) {
-  // Casts are used to satisfy jsonwebtoken v9 typings in this project setup.
+ 
   return jwt.sign(payload as any, JWT_SECRET as any, { expiresIn: JWT_EXPIRES_IN } as any);
 }
 

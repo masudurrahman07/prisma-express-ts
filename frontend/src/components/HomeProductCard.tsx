@@ -10,7 +10,7 @@ interface Props {
   product: Product;
 }
 
-/* Generates a deterministic pastel gradient from the product id */
+
 function getPlaceholderStyle(id: string): React.CSSProperties {
   const hue = (id.charCodeAt(0) * 37 + id.charCodeAt(id.length - 1) * 13) % 360;
   return {
@@ -57,13 +57,12 @@ export default function HomeProductCard({ product }: Props) {
             <span className="hpc-placeholder-icon">📦</span>
           </div>
         )}
-        {/* Hover overlay with quick actions */}
+        
         <div className="hpc-overlay" aria-hidden="true">
           <Link
             to={`/products/${product.id}`}
             className="hpc-quick-btn"
-            tabIndex={-1}
-          >
+            tabIndex={-1}>
             <Eye size={16} strokeWidth={2} />
           </Link>
           <button
@@ -71,14 +70,13 @@ export default function HomeProductCard({ product }: Props) {
             className="hpc-quick-btn"
             onClick={handleAdd}
             disabled={adding}
-            tabIndex={-1}
-          >
+            tabIndex={-1}>
             <ShoppingCart size={16} strokeWidth={2} />
           </button>
         </div>
       </div>
 
-      {/* Body */}
+      
       <div className="hpc-body">
         <div className="hpc-meta">
           <span className="hpc-category">
@@ -100,8 +98,7 @@ export default function HomeProductCard({ product }: Props) {
           <div className="hpc-actions">
             <Link
               to={`/products/${product.id}`}
-              className="btn btn--outline btn--sm"
-            >
+              className="btn btn--outline btn--sm">
               <Eye size={14} strokeWidth={2} />
               Details
             </Link>
@@ -109,8 +106,7 @@ export default function HomeProductCard({ product }: Props) {
               type="button"
               className="btn btn--primary btn--sm"
               onClick={handleAdd}
-              disabled={adding}
-            >
+              disabled={adding}>
               <ShoppingCart size={14} strokeWidth={2} />
               {adding ? "Adding…" : "Add"}
             </button>

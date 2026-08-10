@@ -9,14 +9,13 @@ interface ProductCardProps {
   product: Product;
 }
 
-/* Deterministic hue from product id for placeholder gradient */
+
 function getHue(id: string): number {
   let h = 0;
   for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) & 0xffff;
   return h % 360;
 }
 
-/* Category → simple emoji mapping for the placeholder */
 const CATEGORY_ICONS: Record<string, string> = {
   electronics:      "💻",
   computers:        "💻",
@@ -101,9 +100,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       layout
       whileHover={{ y: -5 }}
       transition={{ duration: 0.22, ease: "easeOut" }}
-      className="pc"
-    >
-      {/* ── Image / visual area ── */}
+      className="pc">
+    
       <div className="pc-image">
         {product.imageUrl ? (
           <>
@@ -117,7 +115,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </div>
           </>
         ) : (
-          /* Styled placeholder — no tiny icon, full visual treatment */
+         
           <div
             className="pc-placeholder"
             style={{
@@ -126,18 +124,15 @@ export default function ProductCard({ product }: ProductCardProps) {
                 hsl(${hueB},50%,95%) 60%,
                 hsl(${(hue + 20) % 360},55%,93%) 100%)`,
             }}
-            aria-hidden="true"
-          >
-            {/* Decorative background circles */}
+            aria-hidden="true">
+       
             <div
               className="pc-ph-circle pc-ph-circle--lg"
-              style={{ background: `hsl(${hue},55%,84%)` }}
-            />
+              style={{ background: `hsl(${hue},55%,84%)` }} />
             <div
               className="pc-ph-circle pc-ph-circle--sm"
-              style={{ background: `hsl(${hueB},50%,88%)` }}
-            />
-            {/* Icon centrepiece */}
+              style={{ background: `hsl(${hueB},50%,88%)` }} />
+            
             <div className="pc-ph-inner">
               <span className="pc-ph-icon" role="img" aria-label={product.category?.name ?? "product"}>
                 {catIcon}
@@ -146,7 +141,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 <span className="pc-ph-label">{product.category.name}</span>
               )}
             </div>
-            {/* Hover quick-view still works on placeholder */}
+           
             <div className="pc-overlay" aria-hidden="true">
               <Link to={`/products/${product.id}`} className="pc-quick-btn" tabIndex={-1}>
                 <Eye size={16} strokeWidth={2} />
@@ -156,7 +151,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           </div>
         )}
 
-        {/* In-cart badge */}
+       
         {inCart && (
           <span className="pc-in-cart-badge" aria-label="In cart">
             ✓ In cart
@@ -164,22 +159,22 @@ export default function ProductCard({ product }: ProductCardProps) {
         )}
       </div>
 
-      {/* ── Body ── */}
+    
       <div className="pc-body">
-        {/* Category */}
+       
         <span className="pc-category">
           {product.category?.name ?? "Uncategorized"}
         </span>
 
-        {/* Title */}
+       
         <h3 className="pc-title">{product.title}</h3>
 
-        {/* Description */}
+      
         <p className="pc-desc">
           {product.description ?? "A quality product worth exploring."}
         </p>
 
-        {/* Footer: price + actions */}
+
         <div className="pc-footer">
           <div className="pc-price-block">
             <span className="pc-price-label">Price</span>
@@ -190,8 +185,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <Link
               to={`/products/${product.id}`}
               className="btn btn--outline btn--sm"
-              aria-label={`View details for ${product.title}`}
-            >
+              aria-label={`View details for ${product.title}`}>
               <Eye size={13} strokeWidth={2} />
               Details
             </Link>
@@ -206,8 +200,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                       ? updateQuantity(product.id, cartItem.quantity - 1)
                       : handleRemove()
                   }
-                  aria-label="Decrease quantity"
-                >
+                  aria-label="Decrease quantity">
                   <Minus size={12} strokeWidth={2.5} />
                 </button>
                 <span className="pc-cart-qty" aria-live="polite">{cartItem.quantity}</span>
@@ -215,16 +208,14 @@ export default function ProductCard({ product }: ProductCardProps) {
                   type="button"
                   className="pc-stepper-btn"
                   onClick={() => updateQuantity(product.id, cartItem.quantity + 1)}
-                  aria-label="Increase quantity"
-                >
+                  aria-label="Increase quantity">
                   <Plus size={12} strokeWidth={2.5} />
                 </button>
                 <button
                   type="button"
                   className="pc-remove-btn"
                   onClick={handleRemove}
-                  aria-label="Remove from cart"
-                >
+                  aria-label="Remove from cart">
                   <Trash2 size={13} strokeWidth={2} />
                 </button>
               </div>
@@ -233,8 +224,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 type="button"
                 className="btn btn--primary btn--sm"
                 onClick={handleAdd}
-                aria-label={`Add ${product.title} to cart`}
-              >
+                aria-label={`Add ${product.title} to cart`}>
                 <ShoppingCart size={13} strokeWidth={2} />
                 Add
               </button>

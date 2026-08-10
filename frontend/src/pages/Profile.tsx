@@ -106,7 +106,7 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Quick actions */}
+     
       <div className="profile-quick-actions">
         <Link to="/orders" className="profile-action-card">
           <div className="profile-action-icon"><ClipboardList size={22} strokeWidth={1.8} /></div>

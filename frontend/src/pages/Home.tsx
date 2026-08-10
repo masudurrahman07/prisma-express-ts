@@ -26,7 +26,7 @@ import { productsApi, categoriesApi } from "../api";
 import { Product, Category } from "../types";
 import HomeProductCard from "../components/HomeProductCard";
 
-/* ── Animation helpers ─────────────────────────────── */
+
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 28 },
   animate: { opacity: 1, y: 0 },
@@ -46,7 +46,7 @@ const stagger = (i: number) => ({
   transition: { duration: 0.45, delay: i * 0.09, ease: "easeOut" as const },
 });
 
-/* ── Static data ────────────────────────────────────── */
+
 const benefits = [
   {
     icon: <ShieldCheck size={22} strokeWidth={2} />,
@@ -127,7 +127,7 @@ const highlights = [
   },
 ];
 
-/* ── Fallback category icons mapping ───────────────── */
+
 const fallbackCategoryIcons: Record<string, string> = {
   electronics: "💻",
   clothing: "👕",
@@ -176,12 +176,7 @@ export default function Home() {
   return (
     <div className="home-page">
 
-      {/* ══════════════════════════════════════════════
-          1. HERO
-      ══════════════════════════════════════════════ */}
-      {/* ══════════════════════════════════════════════
-          1. HERO
-      ══════════════════════════════════════════════ */}
+     
       <section className="hp-hero">
         {/* Continuous Drifting Aurora Atmosphere */}
         <div className="hp-hero-aurora-bg" aria-hidden="true">
@@ -219,7 +214,7 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            {/* Trust pills */}
+          
             <motion.div className="hp-hero-pills" {...fadeUp(0.26)}>
               {highlights.map((h) => (
                 <span key={h.text} className="hp-hero-pill">
@@ -229,19 +224,18 @@ export default function Home() {
             </motion.div>
           </div>
 
-          {/* Right visual - Premium E-Commerce Glass Preview */}
+        
           <motion.div
             className="hp-hero-preview-wrap"
             initial={{ opacity: 0, scale: 0.96, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" as const }}
-          >
-            {/* Glow backdrop */}
+            transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" as const }}>
+          
             <div className="hp-hero-preview-glow" aria-hidden="true" />
 
-            {/* Main Glass Card */}
+          
             <div className="hp-hero-glass-card">
-              {/* Browser/Store Header */}
+         
               <div className="hp-hero-glass-header">
                 <div className="hp-hero-glass-dots" aria-hidden="true">
                   <span className="dot dot--red" />
@@ -257,9 +251,9 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Glass Card Body */}
+             
               <div className="hp-hero-glass-body">
-                {/* Store Search/Header Bar */}
+        
                 <div className="hp-hero-glass-search">
                   <div className="hp-hero-search-left">
                     <span className="hp-search-tag">Featured Catalog</span>
@@ -272,7 +266,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Product List Inside Preview */}
+                
                 <div className="hp-hero-preview-products">
                   {featured.length > 0 ? (
                     featured.slice(0, 3).map((p, idx) => (
@@ -298,7 +292,7 @@ export default function Home() {
                       </div>
                     ))
                   ) : (
-                    // Skeleton / Fallback preview items if loading
+                    
                     [1, 2, 3].map((i) => (
                       <div key={i} className="hp-preview-product-row hp-preview-product-row--skeleton">
                         <div className="hp-preview-thumb hp-skeleton-box" />
@@ -312,7 +306,7 @@ export default function Home() {
                   )}
                 </div>
 
-                {/* Cart Confirmation Chip */}
+             
                 <div className="hp-hero-cart-confirm">
                   <div className="hp-cart-confirm-icon">
                     <Check size={13} strokeWidth={3} />
@@ -326,13 +320,12 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Floating Glass Chips */}
+      
             <motion.div
               className="hp-hero-float-chip hp-hero-float-chip--tl"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" as const }}
-            >
+              transition={{ duration: 0.6, delay: 0.35, ease: "easeOut" as const }} >
               <div className="hp-float-chip-icon hp-float-chip-icon--blue">
                 <Package size={15} />
               </div>
@@ -346,8 +339,7 @@ export default function Home() {
               className="hp-hero-float-chip hp-hero-float-chip--br"
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" as const }}
-            >
+              transition={{ duration: 0.6, delay: 0.45, ease: "easeOut" as const }} >
               <div className="hp-float-chip-icon hp-float-chip-icon--green">
                 <ShieldCheck size={15} />
               </div>
@@ -360,9 +352,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          2. BENEFITS / TRUST BAR
-      ══════════════════════════════════════════════ */}
+   
       <section className="hp-section hp-benefits">
         <div className="hp-section-inner">
           <div className="hp-section-header">
@@ -379,8 +369,7 @@ export default function Home() {
               <motion.article
                 key={b.title}
                 className="hp-benefit-card"
-                {...stagger(i)}
-              >
+                {...stagger(i)}  >
                 <div className="hp-benefit-icon" aria-hidden="true">{b.icon}</div>
                 <strong>{b.title}</strong>
                 <p>{b.desc}</p>
@@ -390,9 +379,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          3. CATEGORIES
-      ══════════════════════════════════════════════ */}
+     
       <section className="hp-section hp-section--alt hp-categories">
         <div className="hp-section-inner">
           <div className="hp-section-header">
@@ -401,16 +388,14 @@ export default function Home() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4 }}
-            >
+              transition={{ duration: 0.4 }} >
               Browse by category
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.05 }}
-            >
+              transition={{ duration: 0.45, delay: 0.05 }}  >
               Shop what you need
             </motion.h2>
             <motion.p
@@ -418,8 +403,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
+              transition={{ duration: 0.4, delay: 0.1 }} >
               Jump straight to the products that interest you most.
             </motion.p>
           </div>
@@ -468,9 +452,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          4. FEATURED PRODUCTS
-      ══════════════════════════════════════════════ */}
+ 
       <section className="hp-section hp-featured">
         <div className="hp-section-inner">
           <div className="hp-section-header">
@@ -478,16 +460,14 @@ export default function Home() {
               className="eyebrow"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }} >
               Featured products
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: 0.05 }}
-            >
+              transition={{ duration: 0.45, delay: 0.05 }}>
               Popular picks
             </motion.h2>
             <motion.p
@@ -495,8 +475,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
+              transition={{ duration: 0.4, delay: 0.1 }} >
               Real products from our catalog — add any to your cart and check out instantly.
             </motion.p>
           </div>
@@ -526,8 +505,7 @@ export default function Home() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-          >
+            transition={{ duration: 0.4, delay: 0.2 }} >
             <Link to="/products" className="btn btn--outline btn--lg">
               View All Products <ArrowRight size={16} strokeWidth={2} />
             </Link>
@@ -535,9 +513,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          5. STATS BAND
-      ══════════════════════════════════════════════ */}
+    
       <section className="hp-stats-band">
         <div className="hp-stats-inner">
           {stats.map((s, i) => (
@@ -547,8 +523,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.42, delay: i * 0.08, ease: "easeOut" as const }}
-            >
+              transition={{ duration: 0.42, delay: i * 0.08, ease: "easeOut" as const }}  >
               <div className="hp-stat-icon" aria-hidden="true">{s.icon}</div>
               <strong className="hp-stat-value">{s.value}</strong>
               <span className="hp-stat-label">{s.label}</span>
@@ -557,9 +532,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          6. WHY CHOOSE US
-      ══════════════════════════════════════════════ */}
+  
       <section className="hp-section hp-why">
         <div className="hp-section-inner hp-why-inner">
           <div className="hp-why-copy">
@@ -567,8 +540,7 @@ export default function Home() {
               className="eyebrow"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }} >
               Why choose Shoply
             </motion.span>
             <motion.h2
@@ -583,8 +555,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-            >
+              transition={{ delay: 0.1 }}>
               Shoply isn't just another product listing. It's a complete shopping
               experience — from discovery to checkout — built with care and attention
               to detail.
@@ -593,8 +564,7 @@ export default function Home() {
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.16 }}
-            >
+              transition={{ delay: 0.16 }}>
               <Link to="/about" className="btn btn--outline btn--md">
                 Learn more about us
               </Link>
@@ -606,13 +576,11 @@ export default function Home() {
               <motion.article
                 key={w.title}
                 className="hp-why-card"
-                {...stagger(i)}
-              >
+                {...stagger(i)} >
                 <div
                   className="hp-why-icon"
                   style={{ background: w.bg, color: w.color }}
-                  aria-hidden="true"
-                >
+                  aria-hidden="true" >
                   {w.icon}
                 </div>
                 <div>
@@ -625,9 +593,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          7. SHOPPING MADE SIMPLE (replaces testimonials)
-      ══════════════════════════════════════════════ */}
+
       <section className="hp-section hp-section--alt hp-simple">
         <div className="hp-section-inner">
           <div className="hp-section-header">
@@ -635,16 +601,14 @@ export default function Home() {
               className="eyebrow"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-            >
+              viewport={{ once: true }}  >
               The Shoply experience
             </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-            >
+              transition={{ delay: 0.05 }} >
               Shopping made simple
             </motion.h2>
           </div>
@@ -681,9 +645,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          8. NEWSLETTER
-      ══════════════════════════════════════════════ */}
+   
       <section className="hp-newsletter">
         <div className="hp-newsletter-inner">
           <motion.div
@@ -691,8 +653,7 @@ export default function Home() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+            transition={{ duration: 0.5 }} >
             <span className="hp-newsletter-eyebrow">Stay in the loop</span>
             <h2>Get notified about new arrivals</h2>
             <p>
@@ -706,8 +667,7 @@ export default function Home() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+            transition={{ duration: 0.5, delay: 0.1 }} >
             {subscribed ? (
               <div className="hp-newsletter-success">
                 <CheckCircle size={32} strokeWidth={1.8} />
@@ -726,8 +686,7 @@ export default function Home() {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
                   required
-                  className="hp-newsletter-input"
-                />
+                  className="hp-newsletter-input"  />
                 <button type="submit" className="btn btn--primary btn--md">
                   Subscribe
                 </button>
@@ -740,33 +699,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════
-          9. FINAL CTA
-      ══════════════════════════════════════════════ */}
+    
       <section className="hp-cta-band">
         <div className="hp-cta-inner">
           <motion.span
             className="hp-cta-eyebrow"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
+            viewport={{ once: true }} >
             Ready to find something you love?
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.06 }}
-          >
+            transition={{ delay: 0.06 }}  >
             Start shopping today.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-          >
+            transition={{ delay: 0.1 }}   >
             Browse the full catalog, fill your cart, and check out with a clean,
             simple flow. Everything is right here.
           </motion.p>
@@ -775,8 +729,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.16 }}
-          >
+            transition={{ delay: 0.16 }}  >
             <Link to="/products" className="btn btn--primary btn--lg">
               Shop Products
               <ArrowRight size={17} strokeWidth={2.2} />

@@ -67,14 +67,13 @@ const features = [
 export default function About() {
   return (
     <div className="about-page">
-      {/* ── Page Hero ── */}
+
       <section className="about-hero">
         <motion.div
           className="about-hero-content"
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+          transition={{ duration: 0.5 }}>
           <span className="eyebrow">Our Story</span>
           <h1>Shopping made simple, powerful, and enjoyable.</h1>
           <p>
@@ -87,7 +86,7 @@ export default function About() {
         </motion.div>
       </section>
 
-      {/* ── Stats strip ── */}
+      
       <section className="about-stats-strip">
         <div className="about-stats-inner">
           {stats.map((stat, i) => (
@@ -98,8 +97,7 @@ export default function About() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              variants={fadeUp}
-            >
+              variants={fadeUp}>
               <strong className="about-stat-value">{stat.value}</strong>
               <span className="about-stat-label">{stat.label}</span>
             </motion.div>
@@ -107,7 +105,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Mission ── */}
+     
       <section className="about-section">
         <div className="about-section-inner about-mission-grid">
           <motion.div
@@ -115,8 +113,7 @@ export default function About() {
             initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+            transition={{ duration: 0.5 }}>
             <span className="eyebrow">Our Mission</span>
             <h2>We believe great shopping starts with great design.</h2>
             <p>
@@ -134,8 +131,7 @@ export default function About() {
             initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+          transition={{ duration: 0.5, delay: 0.1 }} >
             <div className="about-mission-card">
               <span className="eyebrow">Since 2024</span>
               <strong>A portfolio-grade e-commerce project</strong>
@@ -148,7 +144,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Why choose us ── */}
+     
       <section className="about-section about-section--alt">
         <div className="about-section-inner">
           <div className="about-section-header">
@@ -164,8 +160,7 @@ export default function About() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={fadeUp}
-              >
+                variants={fadeUp}>
                 <div className="about-value-icon" aria-hidden="true">
                   {item.icon}
                 </div>
@@ -177,7 +172,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── Features ── */}
+
       <section className="about-section">
         <div className="about-section-inner">
           <div className="about-section-header">
@@ -193,8 +188,7 @@ export default function About() {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
-                variants={fadeUp}
-              >
+                variants={fadeUp}>
                 <div className="about-feature-icon" aria-hidden="true">
                   {item.icon}
                 </div>
@@ -208,15 +202,14 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── CTA ── */}
+     
       <section className="about-cta-section">
         <motion.div
           className="about-cta-inner"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.45 }}
-        >
+          transition={{ duration: 0.45 }}>
           <span className="eyebrow">Ready to shop?</span>
           <h2>Browse our full product catalog today.</h2>
           <p>

@@ -103,7 +103,7 @@ export default function ProductDetails() {
 
   return (
     <section className="page pd-page">
-      {/* Back */}
+   
       <button type="button" className="pd-back-btn" onClick={() => navigate(-1)}>
         <ArrowLeft size={15} strokeWidth={2} /> Back to Products
       </button>
@@ -112,9 +112,8 @@ export default function ProductDetails() {
         className="pd-layout"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: "easeOut" as const }}
-      >
-        {/* LEFT — image */}
+        transition={{ duration: 0.4, ease: "easeOut" as const }}>
+        
         <div className="pd-image-col">
           <div className="pd-image-frame">
             {product.imageUrl ? (
@@ -126,7 +125,7 @@ export default function ProductDetails() {
               </div>
             )}
           </div>
-          {/* Meta chips below image */}
+         
           <div className="pd-image-chips">
             {product.sku && (
               <span className="pd-chip">
@@ -140,9 +139,9 @@ export default function ProductDetails() {
           </div>
         </div>
 
-        {/* RIGHT — details */}
+      
         <div className="pd-detail-col">
-          {/* Category */}
+       
           <div className="pd-category-row">
             <span className="category-chip">
               <Tag size={12} strokeWidth={2} /> {product.category?.name ?? "Uncategorized"}
@@ -166,7 +165,7 @@ export default function ProductDetails() {
 
           <div className="pd-divider" />
 
-          {/* Cart controls */}
+       
           {inCart ? (
             <div className="pd-in-cart">
               <div className="pd-in-cart-label">
@@ -184,8 +183,7 @@ export default function ProductDetails() {
                         ? updateQuantity(product.id, cartItem.quantity - 1)
                         : handleRemove()
                     }
-                    aria-label="Decrease"
-                  >
+                    aria-label="Decrease">
                     <Minus size={14} strokeWidth={2.5} />
                   </button>
                   <span className="pd-stepper-val">{cartItem.quantity}</span>
@@ -193,16 +191,14 @@ export default function ProductDetails() {
                     type="button"
                     className="pd-stepper-btn"
                     onClick={() => updateQuantity(product.id, cartItem.quantity + 1)}
-                    aria-label="Increase"
-                  >
+                    aria-label="Increase" >
                     <Plus size={14} strokeWidth={2.5} />
                   </button>
                 </div>
                 <button
                   type="button"
                   className="btn btn--danger btn--md"
-                  onClick={handleRemove}
-                >
+                  onClick={handleRemove}  >
                   <Trash2 size={15} strokeWidth={2} /> Remove from Cart
                 </button>
                 <Link to="/cart" className="btn btn--primary btn--md">
@@ -219,8 +215,7 @@ export default function ProductDetails() {
                     type="button"
                     className="pd-stepper-btn"
                     onClick={() => setQuantity((q) => Math.max(1, q - 1))}
-                    aria-label="Decrease"
-                  >
+                    aria-label="Decrease" >
                     <Minus size={14} strokeWidth={2.5} />
                   </button>
                   <input
@@ -230,14 +225,12 @@ export default function ProductDetails() {
                     value={quantity}
                     onChange={(e) => setQuantity(Math.max(1, Number(e.target.value)))}
                     className="pd-stepper-input"
-                    aria-label="Quantity"
-                  />
+                    aria-label="Quantity" />
                   <button
                     type="button"
                     className="pd-stepper-btn"
                     onClick={() => setQuantity((q) => q + 1)}
-                    aria-label="Increase"
-                  >
+                    aria-label="Increase" >
                     <Plus size={14} strokeWidth={2.5} />
                   </button>
                 </div>
@@ -246,8 +239,7 @@ export default function ProductDetails() {
                 <button
                   type="button"
                   className="btn btn--primary btn--lg pd-add-btn"
-                  onClick={handleAddToCart}
-                >
+                  onClick={handleAddToCart}  >
                   <ShoppingCart size={17} strokeWidth={2} />
                   Add to Cart
                 </button>
